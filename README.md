@@ -1,6 +1,9 @@
 ## Fedora Respins SIG HowTo Guides and Files Page.
 
-Repo License: GPL v2+ [[ https://www.gnu.org/licenses/gpl.html ]]
+This repo is intended for l18n ( globalization work by international contributors, for whom English is not their native / second tongue. 
+
+
+Repo License: GPL v3 [[ https://www.gnu.org/licenses/gpl.html ]]
 
 Welcome to the Fedora Respins SIG Repo, Here you will find the final work that is used by the SIG Members to provide Community Supported Updated Live ISOs at the regular interval of every even point kernel release  (i.e. 4.9.10 > 4.9.12 > 4.9.14 ... etc)
 

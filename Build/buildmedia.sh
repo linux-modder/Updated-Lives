@@ -1,5 +1,5 @@
 #!/bin/bash
-#License:GPL2 or GPL3
+#License:GPLv3
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
@@ -78,7 +78,23 @@ rm -rf /var/lmc
 #echo "starting torrent builds"
 
 cd /srv/Livecds/$2/
-#sha512sum *.iso >CHECKSUM512-$2 
+sha512sum *.iso >CHECKSUM512-$2 
 
+## Onward to Torrent Generation.
 
+cd /srv/Livecds/$2/
+
+repodir=/srv/Livecds/$2/
+hash=$(grep $spin $repodir/CHECKSUM512-$2)
+
+for spin in CINN KDE LXDE MATE WORK SECURITY SOAS XFCE; do 
+    transmission-create -c "ISO SHA512SUM: ${hash} " -s 2048 -p -t http://respins.fedorainfracloud.org:6969/announce -o $repodir/F$1-${spin}-x86_64-$2.torrent $repodir/F$1-${spin}-x86_64-$2.iso
+    chmod +r $repodir/*.torrent
+ 
+    echo "update opentracker whitelist for ${spin}"
+    transmission-show $repodir/F$1-${spin}-x86_64-$2.torrent | awk '/Hash/{print $2 " - "}' >> $repodir/buildfile
+    echo F$1-${spin}-x86_64-$2.iso >> $repodir/buildfile
+done
+cat $repodir/buildfile | paste -d "" - - > /var/opentracker/whitelist
+cp $repodir/buildfile ~/whitelist-$2
 

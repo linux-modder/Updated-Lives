@@ -17,6 +17,8 @@ add_option is deprecated and will be removed in pykickstart-3.  Use add_argument
 add_option is deprecated and will be removed in pykickstart-3.  Use add_argument instead.
 
 **
+NOTE:  buildmedia-all.sh __INCLUDES__ torrent generation, buildmedia.sh is merely ISOs no torrents.
+
 This script IS NOT Multi arch, it will only build x64 (64 bit) ISOs as written if you need another arch add it to teh scripting or ask a SIG member.
 
 The script takes 2 arguments:
